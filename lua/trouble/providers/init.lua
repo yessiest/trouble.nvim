@@ -3,6 +3,7 @@ local qf = require("trouble.providers.qf")
 local telescope = require("trouble.providers.telescope")
 local lsp = require("trouble.providers.lsp")
 local diagnostic = require("trouble.providers.diagnostic")
+local coc = require("trouble.providers.coc")
 
 local M = {}
 
@@ -16,6 +17,13 @@ M.providers = {
   quickfix = qf.qflist,
   loclist = qf.loclist,
   telescope = telescope.telescope,
+  coc_workspace_diagnostics = coc.workspace_diagnostics,
+  coc_definitions = coc.definitions,
+  coc_references = coc.references,
+  coc_references_used = coc.references_used,
+  coc_type_definitions = coc.type_definitions,
+  coc_implementations = coc.implementations,
+  coc_declarations = coc.declarations,
 }
 
 ---@param options TroubleOptions

@@ -7,6 +7,7 @@ augroup Trouble
   else
     au User LspDiagnosticsChanged lua require'trouble'.refresh({auto = true, provider = "diagnostics"})
   endif
+  au InsertLeave * lua require"trouble".refresh({auto = true, provider = "coc_workspace_diagnostics"})
   autocmd BufWinEnter,BufEnter * lua require("trouble").action("on_win_enter")
 augroup end
 
