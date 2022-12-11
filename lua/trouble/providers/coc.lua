@@ -55,7 +55,7 @@ function M.workspace_diagnostics(_, bufnr, cb, _)
       local line = (vim.api.nvim_buf_get_lines(bufnr, row, row + 1, false) or { "" })[1]
       item.message = item.message or line or ""
     end
-
+    local msgsign = vim.fn.sign_getdefined("Coc" .. item.severity)[1]
     table.insert(items, {
       bufnr = bufnr,
       filename = item.file,
@@ -63,7 +63,7 @@ function M.workspace_diagnostics(_, bufnr, cb, _)
       col = col + 1,
       start = start,
       finish = finish,
-      sign = vim.fn.sign_getdefined("Coc" .. item.severity)[1]["text"],
+      sign = (msgsign and msgsign["text"]) or vim.fn.sign_getdefined("CocInfo")[1]["text"],
       sign_hl = "Coc" .. item.severity .. "Sign",
       text = vim.trim(item.message:gsub("[\n]", "")):sub(0, vim.o.columns),
       full_text = vim.trim(item.message),
